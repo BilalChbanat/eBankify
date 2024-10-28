@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/ebankify
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    username: ${admin}
+    password: ${admin}
     driver-class-name: org.postgresql.Driver
 
   jpa:
