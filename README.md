@@ -31,7 +31,9 @@ This project aims to develop an online banking management application with a RES
 9. **Encryption**:
    - **Bcrypt**: Used for secure password hashing to ensure that passwords stored in the database are protected against unauthorized access.
   
-![UML Diagram](https://raw.githubusercontent.com/{username}/{repository}/{branch}/images/uml.png)
+## UML
+![image](https://github-production-user-asset-6210df.s3.amazonaws.com/117037147/380779763-d78cdb46-20e2-48df-9145-9bfb0f18a744.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20241028%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241028T153326Z&X-Amz-Expires=300&X-Amz-Signature=22ddc8a911b8678c98d9c939fef01cdf06e26ef4c7605b1443b008f2b27b0777&X-Amz-SignedHeaders=host)
+
 
 ## Technologies Used
 - **Spring Boot**: Framework for building Java-based RESTful APIs quickly and efficiently.
