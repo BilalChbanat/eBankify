@@ -54,3 +54,6 @@ CREATE TABLE invoices (
                           status invoice_status_enum NOT NULL,
                           user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
+
+ALTER TABLE bank_accounts
+    ADD COLUMN is_active BOOLEAN DEFAULT TRUE;

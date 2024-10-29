@@ -27,6 +27,9 @@ public class Account {
     @Column(name = "owner_id")
     private Long owner_id ;
 
+    @Column(name = "is_active")
+    private boolean is_active;
+
     @Override
     public String toString() {
         return "Account{" +
