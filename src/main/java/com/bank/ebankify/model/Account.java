@@ -15,28 +15,30 @@ import lombok.Setter;
 public class Account {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "account_number")
-    private String account_number;
+    @Column(name = "account_number", nullable = false, unique = true)
+    private String accountNumber;
 
-    @Column(name = "balance")
+    @Column(name = "balance", nullable = false)
     private Double balance;
 
-    @Column(name = "owner_id")
-    private Long owner_id ;
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User owner;
 
-    @Column(name = "is_active")
-    private boolean is_active;
+    @Column(name = "is_active", nullable = false)
+    private boolean isActive = true;
 
     @Override
     public String toString() {
         return "Account{" +
                 "id=" + id +
-                ", account_number='" + account_number + '\'' +
+                ", accountNumber='" + accountNumber + '\'' +
                 ", balance=" + balance +
-                ", owner_id=" + owner_id +
+                ", owner=" + (owner != null ? owner.getId() : null) +
+                ", isActive=" + isActive +
                 '}';
     }
 }

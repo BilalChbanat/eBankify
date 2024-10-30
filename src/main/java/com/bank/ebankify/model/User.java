@@ -18,28 +18,29 @@ import java.math.BigDecimal;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "age")
+    @Column(name = "age", nullable = false)
     private int age;
 
-    @Column(name = "monthly_income")
-    private Double monthly_income;
+    @Column(name = "monthly_income", nullable = false)
+    private BigDecimal monthlyIncome;
 
-    @Column(name = "credit_score")
-    private Double credit_score;
+    @Column(name = "credit_score", nullable = false)
+    private BigDecimal creditScore;
 
-    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
     private role_enum role;
 
     @Override
@@ -50,8 +51,8 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", age=" + age +
-                ", monthly_income=" + monthly_income +
-                ", credit_score=" + credit_score +
+                ", monthlyIncome=" + monthlyIncome +
+                ", creditScore=" + creditScore +
                 ", role=" + role +
                 '}';
     }
