@@ -1,4 +1,4 @@
-package com.bank.ebankify.service.interfaces;
+package com.bank.ebankify.repository;
 
 import com.bank.ebankify.dto.UserDto;
 
@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 
-public interface UserInterface {
+public interface UserRepository {
 
     UserDto create(UserDto userDto);
     Page<UserDto> findAll(Pageable pageable);
