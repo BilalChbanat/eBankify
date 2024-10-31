@@ -2,11 +2,20 @@ package com.bank.ebankify.service.implementation;
 
 import com.bank.ebankify.dto.InvoiceDto;
 import com.bank.ebankify.service.interfaces.InvoiceService;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+
+@Transactional
+@RequiredArgsConstructor
+@Service
+@Setter
 public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public InvoiceDto create(InvoiceDto invoiceDto) {
