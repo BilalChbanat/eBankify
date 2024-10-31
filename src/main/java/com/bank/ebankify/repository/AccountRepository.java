@@ -10,8 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
-
-    Page<Account> findAll(Pageable pageable);
-    Optional<Account> findById(Long id);
-    Page<Account> findByIsActive(boolean isActive, Pageable pageable);
+    Page<Account> findIsActive(boolean isActive, Pageable pageable);
 }

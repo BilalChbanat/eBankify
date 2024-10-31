@@ -1,19 +1,19 @@
 package com.bank.ebankify.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.math.BigDecimal;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class AccountDto {
 
     private Long id;
     private String accountNumber;
-    private Double balance;
+    private BigDecimal balance;
     private Long ownerId;
     private boolean isActive;
 
@@ -23,7 +23,7 @@ public class AccountDto {
                 "id=" + id +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", balance=" + balance +
-                ", ownerId=" + ownerId +
+                ", ownerId=" + (ownerId != null ? ownerId : "null") +
                 ", isActive=" + isActive +
                 '}';
     }
