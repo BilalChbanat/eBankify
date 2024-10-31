@@ -4,14 +4,11 @@ import com.bank.ebankify.dto.UserDto;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface UserRepository {
+public interface UserRepository extends JpaRepository<UserDto, Long> {
 
-    UserDto create(UserDto userDto);
-    Page<UserDto> findAll(Pageable pageable);
-    Page<UserDto> findById(Long id);
-    UserDto update(Long id, UserDto userDto);
-    void delete(Long id);
-    Page<UserDto> findByRole(String role);
+    Page<UserDto> findByRole(String role, Pageable pageable);
+    UserDto findByEmail(String email);
 }

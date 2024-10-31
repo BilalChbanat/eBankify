@@ -43,6 +43,9 @@ public class User {
     @Column(name = "role", nullable = false)
     private role_enum role;
 
+    @Column(name = "is_active", nullable = false)
+    private boolean isActive;
+
     @Override
     public String toString() {
         return "User{" +
