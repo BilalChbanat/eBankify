@@ -2,10 +2,7 @@ package com.bank.ebankify.dto;
 
 import com.bank.ebankify.ENUM.transaction_status_enum;
 import com.bank.ebankify.ENUM.transaction_type_enum;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -13,6 +10,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class TransactionDto {
 
     private Long id;
