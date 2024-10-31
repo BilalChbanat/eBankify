@@ -1,15 +1,13 @@
 package com.bank.ebankify.dto;
 
 import com.bank.ebankify.ENUM.loan_status_enum;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class LoanDto {
 
     private Long id;

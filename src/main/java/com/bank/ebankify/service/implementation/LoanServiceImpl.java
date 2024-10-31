@@ -2,11 +2,19 @@ package com.bank.ebankify.service.implementation;
 
 import com.bank.ebankify.dto.LoanDto;
 import com.bank.ebankify.service.interfaces.LoanService;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Transactional
+@RequiredArgsConstructor
+@Service
+@Setter
 public class LoanServiceImpl implements LoanService {
     @Override
     public LoanDto create(LoanDto loanDto) {
