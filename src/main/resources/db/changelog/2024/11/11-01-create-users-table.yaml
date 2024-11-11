@@ -52,3 +52,12 @@ databaseChangeLog:
                     nullable: false
         - sql:
             sql: "alter table public.users owner to admin;"
+  - changeSet:
+      id: 1731315751619-2
+      author: Youcode
+      changes:
+        - loadData:
+            tableName: "users"
+            file: "./db/changelog/2024/data/users.csv"
+            separator: ","
+            encoding: "UTF-8"
