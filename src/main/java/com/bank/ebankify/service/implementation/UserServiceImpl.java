@@ -1,6 +1,6 @@
 package com.bank.ebankify.service.implementation;
 
-import com.bank.ebankify.Mapper.UserMapper;
+import com.bank.ebankify.mapper.UserMapper;
 import com.bank.ebankify.dto.UserDto;
 import com.bank.ebankify.model.User;
 import com.bank.ebankify.repository.UserRepository;
@@ -35,21 +35,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Long id) {
-        return null;
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
     public UserDto update(Long id, UserDto userDto) {
-        return null;
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        userMapper.updateFromDto(userDto, user);
+        userRepository.save(user);
+        return userMapper.toDto(user);
     }
 
     @Override
     public void delete(Long id) {
-
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User with id " + id + " not found"));
+        userRepository.delete(user);
     }
+
 
     @Override
     public Page<UserDto> findByRole(String role, Pageable pageable) {
-        return null;
+        Page<User> users = userRepository.findByRole(role, pageable);
+        return users.map(userMapper::toDto);
     }
+
 }

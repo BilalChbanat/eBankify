@@ -10,6 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Page<UserDto> findByRole(String role, Pageable pageable);
-    UserDto findByEmail(String email);
+    Page<User> findByRole(String role, Pageable pageable);
+    User findByEmail(String email);
 }

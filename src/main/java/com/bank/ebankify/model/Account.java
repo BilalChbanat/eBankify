@@ -31,7 +31,7 @@ public class Account {
     private User owner;
 
     @Column(name = "is_active", nullable = false)
-    private boolean isActive = true;
+    private boolean isActive;
 
     @Override
     public String toString() {

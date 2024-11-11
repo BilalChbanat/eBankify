@@ -1,5 +1,6 @@
 package com.bank.ebankify.dto;
 
+import com.bank.ebankify.model.User;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -14,7 +15,7 @@ public class AccountDto {
     private Long id;
     private String accountNumber;
     private BigDecimal balance;
-    private Long ownerId;
+    private User owner;
     private boolean isActive;
 
     @Override
@@ -23,7 +24,7 @@ public class AccountDto {
                 "id=" + id +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", balance=" + balance +
-                ", ownerId=" + (ownerId != null ? ownerId : "null") +
+                ", ownerId=" + owner.getUsername() +
                 ", isActive=" + isActive +
                 '}';
     }

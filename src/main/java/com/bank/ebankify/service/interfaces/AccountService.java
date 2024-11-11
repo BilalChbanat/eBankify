@@ -13,4 +13,6 @@ public interface AccountService {
     AccountDto update(Long id, AccountDto accountDto);
     void delete(Long id);
     Page<AccountDto> findByUserId(Long userId, Pageable pageable);
+
+    Page<AccountDto> findIsActive(boolean isActive, Pageable pageable);
 }
