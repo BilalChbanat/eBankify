@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: Youcode
+      changes:
+        - createTable:
+            tableName: "bank_accounts"
+            schemaName: "public"
+            columns:
+              - column:
+                  name: "id"
+                  type: "serial"
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: "account_number"
+                  type: "varchar(20)"
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: "balance"
+                  type: "double precision"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "owner_id"
+                  type: "integer"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "is_active"
+                  type: "boolean"
+                  defaultValueBoolean: true
+        - addForeignKeyConstraint:
+            baseTableName: "bank_accounts"
+            baseColumnNames: "owner_id"
+            referencedTableName: "users"
+            referencedColumnNames: "id"
+            onDelete: "CASCADE"
+            constraintName: "fk_bank_accounts_owner_id"
+
+        - sql:
+            sql: "alter table public.bank_accounts owner to admin;"

@@ -1,80 +1,36 @@
 spring:
-  application:
-    name: banking-api
-
-  # Database Configuration
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: "admin"
-    password: "admin"
+    url: jdbc:postgresql://localhost:5432/bankapi
+    username: admin
+    password: admin
     driver-class-name: org.postgresql.Driver
-    hikari:
-      maximum-pool-size: 10
-      minimum-idle: 5
-      idle-timeout: 300000
-      connection-timeout: 20000
-      max-lifetime: 1200000
 
-  # JPA Configuration
-  jpa:
+    jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: none   # Do not auto-generate schema; use Liquibase for migrations
+    show-sql: true      # Set to true if you want to see SQL statements in the console
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-        jdbc:
-          batch_size: 50
-        order_inserts: true
-        order_updates: true
-    show-sql: false
-    open-in-view: false
+        format_sql: true # Nicely formats SQL output in the console
 
-  # Liquibase Configuration
   liquibase:
-    change-log: classpath:db/changelog/db.changelog-master.yaml
     enabled: true
-    default-schema: public
+    change-log: classpath:db.master.yaml  # Points to the master changelog file
+    drop-first: false
 
-  #flyway:
+  # Hibernate settings for efficient performance with large datasets (optional)
+  jpa:
+    properties:
+      hibernate.jdbc.batch_size: 30
+      hibernate.order_inserts: true
+      hibernate.order_updates: true
 
-# Application Specific Configuration
-banking:
-  transaction:
-    limits:
-      standard:
-        daily: 10000.00
-        single: 5000.00
-      instant:
-        daily: 20000.00
-        single: 10000.00
-    fees:
-      standard: 0.001 # 0.1%
-      instant: 0.005  # 0.5%
+# Server settings (optional)
+server:
+  port: 8080  # Define the port your application will run on
 
-  loan:
-    min-credit-score: 650
-    min-monthly-income: 3000.00
-    max-debt-ratio: 0.4
-    min-age: 18
-    min-relationship-months: 6
-
-# Logging Configuration
 logging:
   level:
     root: INFO
-    com.banking: INFO
-    org.springframework.web: INFO
-    org.hibernate: INFO
-    liquibase: INFO
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-
-# Server Configuration
-server:
-  port: 8080
-  servlet:
-    context-path: /api
-  error:
-    include-message: always
-    include-binding-errors: always
+    org.hibernate.SQL: DEBUG  # Show SQL in logs if needed
+    org.hibernate.type: TRACE # Show SQL parameter values in logs

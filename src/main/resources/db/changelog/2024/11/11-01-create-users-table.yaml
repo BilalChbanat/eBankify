@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1731315751619-1
+      author: Youcode
+      changes:
+        - createTable:
+            tableName: "users"
+            schemaName: "public"
+            columns:
+              - column:
+                  name: "id"
+                  type: "serial"
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: "username"
+                  type: "varchar(50)"
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: "email"
+                  type: "varchar(100)"
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: "password"
+                  type: "varchar(100)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "age"
+                  type: "integer"
+                  constraints:
+                    checkConstraint: "age >= 0"
+                    nullable: false
+              - column:
+                  name: "monthly_income"
+                  type: "double precision"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "credit_score"
+                  type: "integer"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "role"
+                  type: "role_enum"
+                  constraints:
+                    nullable: false
+        - sql:
+            sql: "alter table public.users owner to admin;"

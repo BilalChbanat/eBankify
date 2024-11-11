@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/2024/11/11-01-create-enums.yaml
+  - include:
+      file: db/changelog/2024/11/11-01-create-users-table.yaml
+  - include:
+      file: db/changelog/2024/11/11-01-create-bank-accounts-table.yaml
+  - include:
+      file: db/changelog/2024/11/11-01-create-transactions-table.yaml
+  - include:
+      file: db/changelog/2024/11/11-01-create-loans-table.yaml
+  - include:
+      file: db/changelog/2024/11/11-01-create-invoices-table.yaml
+

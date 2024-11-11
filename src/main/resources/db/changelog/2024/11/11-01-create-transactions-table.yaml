@@ -1,0 +1,62 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1731315869544-1
+      author: Youcode
+      changes:
+        - createTable:
+            tableName: "transactions"
+            schemaName: "public"
+            columns:
+              - column:
+                  name: "id"
+                  type: "serial"
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: "type"
+                  type: "transaction_type_enum"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "amount"
+                  type: "double precision"
+                  constraints:
+                    nullable: false
+                    checkConstraint: "amount >= 0"
+              - column:
+                  name: "date"
+                  type: "timestamp"
+                  defaultValueComputed: "CURRENT_TIMESTAMP"
+              - column:
+                  name: "account_from_id"
+                  type: "integer"
+              - column:
+                  name: "account_to_id"
+                  type: "integer"
+              - column:
+                  name: "fee"
+                  type: "double precision"
+                  defaultValue: "0"
+              - column:
+                  name: "status"
+                  type: "transaction_status_enum"
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: "transactions"
+            baseColumnNames: "account_from_id"
+            referencedTableName: "bank_accounts"
+            referencedColumnNames: "id"
+            onDelete: "CASCADE"
+            constraintName: "fk_transactions_account_from_id"
+
+        - addForeignKeyConstraint:
+            baseTableName: "transactions"
+            baseColumnNames: "account_to_id"
+            referencedTableName: "bank_accounts"
+            referencedColumnNames: "id"
+            onDelete: "CASCADE"
+            constraintName: "fk_transactions_account_to_id"
+
+        - sql:
+            sql: "alter table public.transactions owner to admin;"

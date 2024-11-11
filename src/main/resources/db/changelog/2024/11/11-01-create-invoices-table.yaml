@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1731315959857-1
+      author: Youcode
+      changes:
+        - createTable:
+            tableName: "invoices"
+            schemaName: "public"
+            columns:
+              - column:
+                  name: "id"
+                  type: "serial"
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: "amount_due"
+                  type: "double precision"
+                  constraints:
+                    nullable: false
+                    check: "amount_due >= 0"
+              - column:
+                  name: "due_date"
+                  type: "date"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "status"
+                  type: "invoice_status_enum"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "user_id"
+                  type: "integer"
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: "invoices"
+            baseColumnNames: "user_id"
+            referencedTableName: "users"
+            referencedColumnNames: "id"
+            onDelete: "CASCADE"
+            constraintName: "fk_invoices_user_id"
+
+        - sql:
+            sql: "ALTER TABLE public.invoices OWNER TO admin;"

@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1731315909854-1
+      author: Youcode
+      changes:
+        - createTable:
+            tableName: "loans"
+            schemaName: "public"
+            columns:
+              - column:
+                  name: "id"
+                  type: "serial"
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: "amount"
+                  type: "double precision"
+                  constraints:
+                    nullable: false
+                    check: "amount > 0"
+              - column:
+                  name: "interest_rate"
+                  type: "double precision"
+                  constraints:
+                    nullable: false
+                    check: "interest_rate >= 0"
+              - column:
+                  name: "duration"
+                  type: "integer"
+                  constraints:
+                    nullable: false
+                    check: "duration > 0"
+              - column:
+                  name: "eligibility_criteria"
+                  type: "text"
+              - column:
+                  name: "status"
+                  type: "loan_status_enum"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "user_id"
+                  type: "integer"
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: "loans"
+            baseColumnNames: "user_id"
+            referencedTableName: "users"
+            referencedColumnNames: "id"
+            onDelete: "CASCADE"
+            constraintName: "fk_loans_user_id"
+
+        - sql:
+            sql: "ALTER TABLE public.loans OWNER TO admin;"

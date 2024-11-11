@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1731315618194-1
+      author: Youcode
+      changes:
+        - sql:
+              sql: "DROP TYPE IF EXISTS  role_enum;"
+        - sql:
+            sql: "create type  role_enum as enum ('ADMIN', 'USER', 'EMPLOYEE');"
+
+        - sql:
+            sql: "DROP TYPE IF EXISTS  transaction_type_enum;"
+        - sql:
+            sql: "create type  transaction_type_enum as enum ('CLASSIC', 'INSTANT', 'RECURRING');"
+            
+        - sql:
+            sql: "DROP TYPE IF EXISTS  transaction_status_enum;"
+            
+        - sql:
+            sql: "create type  transaction_status_enum as enum ('APPROVED', 'REJECTED', 'PENDING');"
+            
+        - sql:
+            sql: "DROP TYPE IF EXISTS  loan_status_enum;"
+        - sql:
+            sql: "create type  loan_status_enum as enum ('PENDING', 'APPROVED', 'REJECTED');"
+            
+        - sql:
+            sql: "DROP TYPE IF EXISTS  invoice_status_enum;"
+        - sql:
+            sql: "create type  invoice_status_enum as enum ('PAID', 'UNPAID', 'OVERDUE');"
