@@ -1,4 +1,4 @@
-package com.bank.ebankify.Maper;
+package com.bank.ebankify.Mapper;
 
 public class TransactionMapper {
 }

@@ -18,6 +18,7 @@ public class UserDto {
     private int age;
     private BigDecimal monthlyIncome;
     private BigDecimal creditScore;
+    private boolean isActive;
     private role_enum role;
 
     @Override

@@ -1,5 +1,6 @@
 package com.bank.ebankify.service.implementation;
 
+import com.bank.ebankify.Mapper.UserMapper;
 import com.bank.ebankify.dto.UserDto;
 import com.bank.ebankify.model.User;
 import com.bank.ebankify.repository.UserRepository;
@@ -11,8 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Transactional
 @RequiredArgsConstructor
 @Service
@@ -20,19 +19,18 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private UserMapper userMapper;
 
     @Override
     public UserDto create(UserDto userDto) {
-        return null;
+        userRepository.save(userMapper.toEntity(userDto));
+        return userDto;
     }
 
     @Override
     public Page<UserDto> findAll(Pageable pageable) {
-        return null;
+        Page<User> users = userRepository.findAll(pageable);
+        return users.map(userMapper::toDto);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.bank.ebankify.Maper;
+package com.bank.ebankify.Mapper;
 
 import com.bank.ebankify.dto.AccountDto;
 import com.bank.ebankify.model.Account;
