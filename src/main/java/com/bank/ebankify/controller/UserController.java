@@ -21,7 +21,6 @@ public class UserController {
         return ResponseEntity.ok(createdUser);
     }
 
-
     @GetMapping
     public ResponseEntity<Page<UserDto>> getAllUsers(Pageable pageable) {
         Page<UserDto> users = userService.findAll(pageable);

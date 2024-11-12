@@ -62,12 +62,16 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+
     @Override
     public UserDto update(Long id, UserDto userDto) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        userMapper.updateFromDto(userDto, user);
-        userRepository.save(user);
-        return userMapper.toDto(user);
+        User user = findById(id);
+
+        User usertoUpdate = userMapper.toEntity(userDto);
+        usertoUpdate.setId(id);
+
+        User updatedUser = userRepository.save(usertoUpdate);
+        return userMapper.toDto(updatedUser);
     }
 
     @Override
