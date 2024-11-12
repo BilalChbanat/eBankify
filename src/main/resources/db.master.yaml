@@ -11,4 +11,7 @@ databaseChangeLog:
       file: db/changelog/2024/11/11-01-create-loans-table.yaml
   - include:
       file: db/changelog/2024/11/11-01-create-invoices-table.yaml
+  - include:
+      file: db/changelog/2024/11/12-01-update_role_column_type.yaml
+
 

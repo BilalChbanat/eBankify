@@ -1,6 +1,6 @@
 package com.bank.ebankify.dto;
 
-import com.bank.ebankify.ENUM.loan_status_enum;
+import com.bank.ebankify.enums.loan_status_enum;
 import lombok.*;
 
 @Getter

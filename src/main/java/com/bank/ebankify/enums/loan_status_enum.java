@@ -1,4 +1,4 @@
-package com.bank.ebankify.ENUM;
+package com.bank.ebankify.enums;
 
 public enum loan_status_enum {
     PENDING,

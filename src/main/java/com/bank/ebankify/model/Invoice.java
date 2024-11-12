@@ -1,6 +1,6 @@
 package com.bank.ebankify.model;
 
-import com.bank.ebankify.ENUM.invoice_status_enum;
+import com.bank.ebankify.enums.invoice_status_enum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

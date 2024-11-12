@@ -1,4 +1,4 @@
-package com.bank.ebankify.ENUM;
+package com.bank.ebankify.enums;
 
 public enum transaction_type_enum {
     CLASSIC,

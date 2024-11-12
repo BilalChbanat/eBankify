@@ -1,6 +1,7 @@
 package com.bank.ebankify.dto;
 
-import com.bank.ebankify.ENUM.role_enum;
+
+import com.bank.ebankify.enums.RoleEnum;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -11,7 +12,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Builder
 public class UserDto {
-
     private Long id;
     private String username;
     private String email;
@@ -19,18 +19,5 @@ public class UserDto {
     private BigDecimal monthlyIncome;
     private BigDecimal creditScore;
     private String password;
-    private role_enum role;
-
-    @Override
-    public String toString() {
-        return "UserDto{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", age=" + age +
-                ", monthlyIncome=" + monthlyIncome +
-                ", creditScore=" + creditScore +
-                ", role=" + role +
-                '}';
-    }
+    private String role;
 }

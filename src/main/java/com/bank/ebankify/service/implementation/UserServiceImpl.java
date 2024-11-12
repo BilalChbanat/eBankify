@@ -1,5 +1,6 @@
 package com.bank.ebankify.service.implementation;
 
+import com.bank.ebankify.enums.RoleEnum;
 import com.bank.ebankify.mapper.UserMapper;
 import com.bank.ebankify.dto.UserDto;
 import com.bank.ebankify.model.User;
@@ -12,20 +13,43 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+
 @Transactional
 @RequiredArgsConstructor
 @Service
 @Setter
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
-    private UserMapper userMapper;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Override
     public UserDto create(UserDto userDto) {
-        userRepository.save(userMapper.toEntity(userDto));
-        return userDto;
+        if (userDto.getPassword() == null || userDto.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be null or empty");
+        }
+
+        String roleStr = userDto.getRole();
+        if (roleStr != null) {
+            try {
+                RoleEnum role = RoleEnum.valueOf(roleStr.toUpperCase());
+                User user = userMapper.toEntity(userDto);
+                user.setRole(role);
+                user = userRepository.save(user);
+                return userMapper.toDto(user);
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("Invalid role. Must be one of: " +
+                        Arrays.toString(RoleEnum.values()));
+            }
+        } else {
+            User user = userMapper.toEntity(userDto);
+            user.setRole(RoleEnum.USER);
+            user = userRepository.save(user);
+            return userMapper.toDto(user);
+        }
     }
+
 
     @Override
     public Page<UserDto> findAll(Pageable pageable) {

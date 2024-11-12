@@ -8,6 +8,7 @@ import com.bank.ebankify.service.interfaces.AccountService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,12 @@ public class AccountServiceImp implements AccountService {
 
     private AccountRepository accountRepository;
     private AccountMapper accountMapper;
+
+    @Autowired
+    public AccountServiceImp(AccountRepository accountRepository, AccountMapper accountMapper) {
+        this.accountRepository = accountRepository;
+        this.accountMapper = accountMapper;
+    }
 
     @Override
     public AccountDto create(AccountDto accountDto) {

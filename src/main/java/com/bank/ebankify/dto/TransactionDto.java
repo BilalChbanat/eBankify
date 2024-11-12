@@ -1,7 +1,7 @@
 package com.bank.ebankify.dto;
 
-import com.bank.ebankify.ENUM.transaction_status_enum;
-import com.bank.ebankify.ENUM.transaction_type_enum;
+import com.bank.ebankify.enums.transaction_status_enum;
+import com.bank.ebankify.enums.transaction_type_enum;
 import lombok.*;
 
 import java.time.LocalDate;

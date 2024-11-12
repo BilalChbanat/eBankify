@@ -1,11 +1,8 @@
 package com.bank.ebankify.model;
 
-import com.bank.ebankify.ENUM.role_enum;
+import com.bank.ebankify.enums.RoleEnum;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -15,6 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Setter
 @Getter
+@Builder
 public class User {
 
     @Id
@@ -40,21 +38,7 @@ public class User {
     private BigDecimal creditScore;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private role_enum role;
+    private RoleEnum role;
 
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", age=" + age +
-                ", monthlyIncome=" + monthlyIncome +
-                ", creditScore=" + creditScore +
-                ", role=" + role +
-                '}';
-    }
 }

@@ -1,6 +1,6 @@
 package com.bank.ebankify.dto;
 
-import com.bank.ebankify.ENUM.invoice_status_enum;
+import com.bank.ebankify.enums.invoice_status_enum;
 import lombok.*;
 
 import java.time.LocalDate;

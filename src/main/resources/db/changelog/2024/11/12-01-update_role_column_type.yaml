@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1731410091232-1
+      author: Youcode
+      comment: "Change role column type from enum to varchar(50)"
+      changes:
+        - modifyDataType:
+            tableName: "users"
+            columnName: "role"
+            newDataType: "varchar(50)"
+      rollback:
+        - modifyDataType:
+            tableName: "users"
+            columnName: "role"
+            newDataType: "role_enum"
