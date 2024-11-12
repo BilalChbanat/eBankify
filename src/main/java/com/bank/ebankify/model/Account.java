@@ -30,17 +30,7 @@ public class Account {
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
-    @Column(name = "is_active", nullable = false)
+    @Column(name = "is_active", nullable = false )
     private boolean isActive;
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", accountNumber='" + accountNumber + '\'' +
-                ", balance=" + balance +
-                ", owner=" + (owner != null ? owner.getId() : null) +
-                ", isActive=" + isActive +
-                '}';
-    }
 }

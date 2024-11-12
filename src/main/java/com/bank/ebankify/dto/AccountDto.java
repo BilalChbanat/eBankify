@@ -15,17 +15,7 @@ public class AccountDto {
     private Long id;
     private String accountNumber;
     private BigDecimal balance;
-    private User owner;
+    private Long ownerId;
     private boolean isActive;
 
-    @Override
-    public String toString() {
-        return "AccountDto{" +
-                "id=" + id +
-                ", accountNumber='" + accountNumber + '\'' +
-                ", balance=" + balance +
-                ", ownerId=" + owner.getUsername() +
-                ", isActive=" + isActive +
-                '}';
-    }
 }

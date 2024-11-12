@@ -3,17 +3,16 @@ package com.bank.ebankify.service.implementation;
 import com.bank.ebankify.dto.AccountDto;
 import com.bank.ebankify.mapper.AccountMapper;
 import com.bank.ebankify.model.Account;
+import com.bank.ebankify.model.User;
 import com.bank.ebankify.repository.AccountRepository;
+import com.bank.ebankify.repository.UserRepository;
 import com.bank.ebankify.service.interfaces.AccountService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Transactional
 @RequiredArgsConstructor
@@ -21,19 +20,20 @@ import java.util.Optional;
 @Setter
 public class AccountServiceImp implements AccountService {
 
-    private AccountRepository accountRepository;
-    private AccountMapper accountMapper;
-
-    @Autowired
-    public AccountServiceImp(AccountRepository accountRepository, AccountMapper accountMapper) {
-        this.accountRepository = accountRepository;
-        this.accountMapper = accountMapper;
-    }
+    private final AccountRepository accountRepository;
+    private final AccountMapper accountMapper;
+    private final UserRepository userRepository;
 
     @Override
     public AccountDto create(AccountDto accountDto) {
-        accountRepository.save(accountMapper.toEntity(accountDto));
-        return accountDto;
+        Account account = accountMapper.toEntity(accountDto);
+        if (accountDto.getOwnerId() != null) {
+            User owner = userRepository.findById(accountDto.getOwnerId())
+                    .orElseThrow(() -> new RuntimeException("Owner not found"));
+            account.setOwner(owner);
+        }
+        account = accountRepository.save(account);
+        return accountMapper.toDto(account);
     }
 
     @Override
@@ -43,16 +43,19 @@ public class AccountServiceImp implements AccountService {
     }
 
     @Override
-    public Optional<AccountDto> findById(Long id) {
-        return accountRepository.findById(id).map(accountMapper::toDto);
+    public Account findById(Long id) {
+        return accountRepository.findById(id).orElse(null);
     }
 
     @Override
     public AccountDto update(Long id, AccountDto accountDto) {
-        Account account = accountRepository.findById(id).orElseThrow(() -> new RuntimeException("Account not found"));
-        accountMapper.updateFromDto(accountDto, account);
-        accountRepository.save(account);
-        return accountMapper.toDto(account);
+        Account account = findById(id);
+
+        Account accountUpdate = accountMapper.toEntity(accountDto);
+        accountUpdate.setId(account.getId());
+
+        Account updatedAccount = accountRepository.save(accountUpdate);
+        return accountMapper.toDto(updatedAccount);
     }
 
     @Override
