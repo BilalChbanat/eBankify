@@ -1,6 +1,6 @@
 package com.bank.ebankify.enums;
 
-public enum transaction_type_enum {
+public enum TransactionTypeEnum {
     CLASSIC,
     INSTANT,
     RECURRING

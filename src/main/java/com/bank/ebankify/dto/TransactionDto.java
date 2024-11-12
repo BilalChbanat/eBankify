@@ -1,7 +1,7 @@
 package com.bank.ebankify.dto;
 
-import com.bank.ebankify.enums.transaction_status_enum;
-import com.bank.ebankify.enums.transaction_type_enum;
+import com.bank.ebankify.enums.TransactionStatusEnum;
+import com.bank.ebankify.enums.TransactionTypeEnum;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -14,13 +14,13 @@ import java.time.LocalDate;
 public class TransactionDto {
 
     private Long id;
-    private transaction_type_enum type;
+    private TransactionTypeEnum type;
     private Double amount;
     private LocalDate date;
     private Long accountFromId;
     private Long accountToId;
     private Double fee;
-    private transaction_status_enum status;
+    private TransactionStatusEnum status;
 
     @Override
     public String toString() {

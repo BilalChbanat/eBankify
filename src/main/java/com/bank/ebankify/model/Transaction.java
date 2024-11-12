@@ -1,7 +1,7 @@
 package com.bank.ebankify.model;
 
-import com.bank.ebankify.enums.transaction_status_enum;
-import com.bank.ebankify.enums.transaction_type_enum;
+import com.bank.ebankify.enums.TransactionStatusEnum;
+import com.bank.ebankify.enums.TransactionTypeEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +24,7 @@ public class Transaction {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    private transaction_type_enum type;
+    private TransactionTypeEnum type;
 
     @Column(name = "amount", nullable = false)
     private Double amount;
@@ -45,5 +45,5 @@ public class Transaction {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private transaction_status_enum status;
+    private TransactionStatusEnum status;
 }

@@ -1,6 +1,6 @@
 package com.bank.ebankify.enums;
 
-public enum transaction_status_enum {
+public enum TransactionStatusEnum {
     PENDING,
     APPROVED,
     REJECTED
