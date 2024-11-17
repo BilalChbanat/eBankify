@@ -3,19 +3,16 @@ package com.bank.ebankify.model;
 import com.bank.ebankify.enums.TransactionStatusEnum;
 import com.bank.ebankify.enums.TransactionTypeEnum;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
-@Getter
-@Setter
+@Table(name = "transactions")
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "transactions")
+@Setter
+@Getter
 public class Transaction {
 
     @Id

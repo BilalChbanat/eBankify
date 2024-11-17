@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1731667491033-1
+      author: Youcode
+      changes:
+        - modifyDataType:
+            columnName: "type"
+            tableName: "transactions"
+            newDataType: "varchar(100)"
+        - modifyDataType:
+            columnName: "status"
+            tableName: "transactions"
+            newDataType: "varchar(100)"
