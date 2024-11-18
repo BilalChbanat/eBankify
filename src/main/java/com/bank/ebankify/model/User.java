@@ -40,4 +40,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
+    @OneToOne(mappedBy = "owner", fetch = FetchType.LAZY)
+    private Account account;
+
+    public Account getAccount() {
+        return account;
+    }
 }

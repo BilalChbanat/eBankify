@@ -26,11 +26,11 @@ public class Account {
     @Column(name = "balance", nullable = false)
     private BigDecimal balance;
 
-    @ManyToOne
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
-    @Column(name = "is_active", nullable = false )
+    @Column(name = "is_active", nullable = false)
     private boolean isActive;
-
 }
