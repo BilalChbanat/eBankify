@@ -11,6 +11,5 @@ import java.util.Optional;
 @Repository
 public interface LoanRepository extends JpaRepository<Loan, Long> {
 
-    Page<Loan> findByStatus(String status, Pageable pageable);
     Page<Loan> findByUserId(Long userId, Pageable pageable);
 }

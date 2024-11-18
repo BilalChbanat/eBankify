@@ -1,11 +1,14 @@
 package com.bank.ebankify.model;
 
-import com.bank.ebankify.enums.loan_status_enum;
+import com.bank.ebankify.enums.LoanStatusEnum;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.math.BigDecimal;
 
 @Entity
 @NoArgsConstructor
@@ -19,12 +22,15 @@ public class Loan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Positive
     @Column(name = "amount", nullable = false)
-    private double amount;
+    private BigDecimal amount;
 
+    @Positive
     @Column(name = "interest_rate", nullable = false)
-    private double interestRate;
+    private BigDecimal interestRate;
 
+    @Positive
     @Column(name = "duration", nullable = false)
     private int duration;
 
@@ -33,22 +39,9 @@ public class Loan {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private loan_status_enum status;
+    private LoanStatusEnum status;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @Override
-    public String toString() {
-        return "Loan{" +
-                "id=" + id +
-                ", amount=" + amount +
-                ", interestRate=" + interestRate +
-                ", duration=" + duration +
-                ", eligibilityCriteria='" + eligibilityCriteria + '\'' +
-                ", status=" + status +
-                ", user=" + (user != null ? user.getId() : null) +
-                '}';
-    }
 }

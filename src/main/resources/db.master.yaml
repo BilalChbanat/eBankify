@@ -15,5 +15,7 @@ databaseChangeLog:
       file: db/changelog/2024/11/12-01-update_role_column_type.yaml
   - include:
       file: db/changelog/2024/11/15-01-change-type-of-enums-status-type.yaml
+  - include:
+      file: db/changelog/2024/11/18-01-update-status-type.yaml
 
 

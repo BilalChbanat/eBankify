@@ -1,6 +1,6 @@
 package com.bank.ebankify.dto;
 
-import com.bank.ebankify.enums.loan_status_enum;
+import com.bank.ebankify.enums.LoanStatusEnum;
 import lombok.*;
 
 @Getter
@@ -15,19 +15,8 @@ public class LoanDto {
     private double interestRate;
     private int duration;
     private String eligibilityCriteria;
-    private loan_status_enum status;
+    private LoanStatusEnum status;
     private Long userId;
 
-    @Override
-    public String toString() {
-        return "LoanDto{" +
-                "id=" + id +
-                ", amount=" + amount +
-                ", interestRate=" + interestRate +
-                ", duration=" + duration +
-                ", eligibilityCriteria='" + eligibilityCriteria + '\'' +
-                ", status=" + status +
-                ", userId=" + userId +
-                '}';
-    }
+
 }
