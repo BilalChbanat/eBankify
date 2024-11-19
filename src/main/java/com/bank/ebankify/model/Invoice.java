@@ -1,6 +1,6 @@
 package com.bank.ebankify.model;
 
-import com.bank.ebankify.enums.invoice_status_enum;
+import com.bank.ebankify.enums.InvoiceStatusEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,7 +29,7 @@ public class Invoice {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private invoice_status_enum status;
+    private InvoiceStatusEnum status;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

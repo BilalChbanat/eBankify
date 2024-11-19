@@ -1,6 +1,6 @@
 package com.bank.ebankify.dto;
 
-import com.bank.ebankify.enums.invoice_status_enum;
+import com.bank.ebankify.enums.InvoiceStatusEnum;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ public class InvoiceDto {
     private Long id;
     private Double amountDue;
     private LocalDate dueDate;
-    private invoice_status_enum status;
+    private InvoiceStatusEnum status;
     private Long userId;
 
     @Override
