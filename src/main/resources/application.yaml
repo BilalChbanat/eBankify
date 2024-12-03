@@ -1,36 +1,45 @@
 spring:
+  # Database Configuration
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    driver-class-name: ${DB_DRIVER}
-
-    jpa:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
     hibernate:
-      ddl-auto: none   # Do not auto-generate schema; use Liquibase for migrations
-    show-sql: true      # Set to true if you want to see SQL statements in the console
+      ddl-auto: none
     properties:
       hibernate:
-        format_sql: true # Nicely formats SQL output in the console
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  liquibase:
-    enabled: true
-    change-log: classpath:db.master.yaml  # Points to the master changelog file
-    drop-first: false
+  # JWT Configuration
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET}
+      expiration-time: ${JWT_EXPIRATION}000  # Convert to milliseconds
 
-  # Hibernate settings for efficient performance with large datasets (optional)
-  jpa:
+  # Mail Configuration
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_SUPPORT}
+    password: ${MAIL_PASSWORD}
     properties:
-      hibernate.jdbc.batch_size: 30
-      hibernate.order_inserts: true
-      hibernate.order_updates: true
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
-# Server settings (optional)
 server:
-  port: ${SERVER_PORT}  # Define the port your application will run on
+  port: ${SERVER_PORT}
 
 logging:
   level:
-    root: INFO
-    org.hibernate.SQL: DEBUG  # Show SQL in logs if needed
-    org.hibernate.type: TRACE # Show SQL parameter values in logs
+    root: ${LOGGING_ROOT_LEVEL}
+    org.hibernate.SQL: ${LOGGING_HIBERNATE_SQL}
+    org.hibernate.type: ${LOGGING_HIBERNATE_TYPE}
+
+  # Optional .env File Import
+config:
+  import: optional:file:.env
