@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1733396455796-51
+      author: Youcode
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: verification_code
+                  type: VARCHAR(255)
+                  remarks: "Code for user verification"
+              - column:
+                  name: verification_expiration
+                  type: TIMESTAMP
+                  remarks: "Expiration time for the verification code"
+              - column:
+                  name: enabled
+                  type: BOOLEAN
+                  defaultValue: false
+                  remarks: "Flag indicating if the user is enabled"
