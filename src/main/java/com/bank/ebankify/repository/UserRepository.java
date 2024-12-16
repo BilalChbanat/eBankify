@@ -1,7 +1,5 @@
 package com.bank.ebankify.repository;
 
-import com.bank.ebankify.dto.UserDto;
-
 import com.bank.ebankify.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,8 +1,8 @@
 package com.bank.ebankify.service.implementation;
 
+import com.bank.ebankify.dto.authDto.RegisterDto;
 import com.bank.ebankify.enums.RoleEnum;
 import com.bank.ebankify.mapper.UserMapper;
-import com.bank.ebankify.dto.UserDto;
 import com.bank.ebankify.model.User;
 import com.bank.ebankify.repository.UserRepository;
 import com.bank.ebankify.service.interfaces.UserService;
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
 
     @Override
-    public UserDto create(UserDto userDto) {
+    public RegisterDto create(RegisterDto userDto) {
         if (userDto.getPassword() == null || userDto.getPassword().isEmpty()) {
             throw new IllegalArgumentException("Password cannot be null or empty");
         }
@@ -50,9 +50,8 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
     @Override
-    public Page<UserDto> findAll(Pageable pageable) {
+    public Page<RegisterDto> findAll(Pageable pageable) {
         Page<User> users = userRepository.findAll(pageable);
         return users.map(userMapper::toDto);
     }
@@ -62,9 +61,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-
     @Override
-    public UserDto update(Long id, UserDto userDto) {
+    public RegisterDto update(Long id, RegisterDto userDto) {
         User user = findById(id);
 
         User usertoUpdate = userMapper.toEntity(userDto);
@@ -80,9 +78,8 @@ public class UserServiceImpl implements UserService {
         userRepository.delete(user);
     }
 
-
     @Override
-    public Page<UserDto> findByRole(String role, Pageable pageable) {
+    public Page<RegisterDto> findByRole(String role, Pageable pageable) {
         Page<User> users = userRepository.findByRole(role, pageable);
         return users.map(userMapper::toDto);
     }

@@ -1,6 +1,5 @@
 package com.bank.ebankify.services;
 
-import com.bank.ebankify.dto.UserDto;
 import com.bank.ebankify.mapper.UserMapper;
 import com.bank.ebankify.model.User;
 import com.bank.ebankify.repository.UserRepository;

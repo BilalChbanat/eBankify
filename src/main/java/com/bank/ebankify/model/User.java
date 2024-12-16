@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,18 +36,32 @@ public class User implements UserDetails {
     @Column(name = "age", nullable = false)
     private int age;
 
-    @Column(name = "monthly_income", nullable = false)
+    @Column(name = "monthly_income", nullable = true)
     private BigDecimal monthlyIncome;
 
-    @Column(name = "credit_score", nullable = false)
+    @Column(name = "credit_score", nullable = true)
     private BigDecimal creditScore;
 
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
+    @Column(name = "verification_code")
+    private String verificationCode;
+
+    @Column(name = "verification_expiration")
+    private LocalDateTime verificationCodeExpiresAt;
+
+    private boolean enabled;
+
     @Getter
     @OneToOne(mappedBy = "owner", fetch = FetchType.LAZY)
     private Account account;
+
+    public User(String username, String email, String password){
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
 
     @Override

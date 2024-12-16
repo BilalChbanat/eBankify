@@ -1,6 +1,6 @@
 package com.bank.ebankify.controller;
 
-import com.bank.ebankify.dto.UserDto;
+import com.bank.ebankify.dto.authDto.RegisterDto;
 import com.bank.ebankify.service.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,20 +16,20 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/save")
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-        UserDto createdUser = userService.create(userDto);
+    public ResponseEntity<RegisterDto> createUser(@RequestBody RegisterDto userDto) {
+        RegisterDto createdUser = userService.create(userDto);
         return ResponseEntity.ok(createdUser);
     }
 
     @GetMapping
-    public ResponseEntity<Page<UserDto>> getAllUsers(Pageable pageable) {
-        Page<UserDto> users = userService.findAll(pageable);
+    public ResponseEntity<Page<RegisterDto>> getAllUsers(Pageable pageable) {
+        Page<RegisterDto> users = userService.findAll(pageable);
         return ResponseEntity.ok(users);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
-        UserDto updatedUser = userService.update(id, userDto);
+    public ResponseEntity<RegisterDto> updateUser(@PathVariable Long id, @RequestBody RegisterDto userDto) {
+        RegisterDto updatedUser = userService.update(id, userDto);
         return ResponseEntity.ok(updatedUser);
     }
 
