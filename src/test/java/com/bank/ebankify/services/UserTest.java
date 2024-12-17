@@ -1,5 +1,6 @@
 package com.bank.ebankify.services;
 
+import com.bank.ebankify.dto.authDto.RegisterDto;
 import com.bank.ebankify.mapper.UserMapper;
 import com.bank.ebankify.model.User;
 import com.bank.ebankify.repository.UserRepository;
@@ -32,7 +33,7 @@ class UserTest {
         user.setId(userId);
         user.setUsername("John Doe");
 
-        UserDto userDto = new UserDto();
+        RegisterDto userDto = new RegisterDto();
         userDto.setId(userId);
         userDto.setUsername("John Doe");
 
@@ -53,7 +54,7 @@ class UserTest {
         user.setUsername("Jane Doe");
         user.setPassword("securePassword123");
 
-        UserDto userDto = new UserDto();
+        RegisterDto userDto = new RegisterDto();
         userDto.setUsername("Jane Doe");
         userDto.setPassword("securePassword123");
 
@@ -61,7 +62,7 @@ class UserTest {
         when(userRepository.save(any(User.class))).thenReturn(user);
         when(userMapper.toDto(user)).thenReturn(userDto);
 
-        UserDto createdUser = userService.create(userDto);
+        RegisterDto createdUser = userService.create(userDto);
 
         assertNotNull(createdUser);
         assertEquals("Jane Doe", createdUser.getUsername());
