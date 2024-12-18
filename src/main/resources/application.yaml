@@ -30,7 +30,7 @@ spring:
     username: ${MAIL_SUPPORT}
     password: ${MAIL_PASSWORD}
 server:
-  port: 8080  # Define the port your application will run on
+  port: 8081  # Define the port your application will run on
 
 logging:
   level:
